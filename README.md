@@ -8,4 +8,4 @@ Unzip birds images getting a subfolder with subfolders representing each class:
 
 Final structure:
 
-![alt text](https://github.com/EricAlcarazdelPico/images/subfolders_structure.png "Subfolders")
+![alt text](https://github.com/EricAlcarazdelPico/bird-classifier/blob/master/images/subfolders_structure.PNG "Subfolders")
