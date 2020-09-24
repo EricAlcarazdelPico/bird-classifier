@@ -3,6 +3,16 @@ import shutil
 import glob
 
 def split_data():
+
+  def _move_file(dir, birds_dir, img, data_group):
+    sub_dir = os.path.join(birds_dir, data_group, dir)
+    # create direcotry if not exists
+    if not os.path.exists(sub_dir):
+      os.makedirs(sub_dir)
+    # move file to data_group directory
+    shutil.copy(img, sub_dir)
+    print(f'--->{sub_dir}')
+
   root_dir = os.path.abspath('consolidated')
 
   labels = []
@@ -56,11 +66,6 @@ def split_data():
     print(f'Total validation data: {num_valid}')
     print(f'Total test data: {num_test}')
 
-def _move_file(dir, birds_dir, img, data_group):
-  sub_dir = os.path.join(birds_dir, data_group, dir)
-  # create direcotry if not exists
-  if not os.path.exists(sub_dir):
-    os.makedirs(sub_dir)
-  # move file to data_group directory
-  shutil.copy(img, sub_dir)
-  print(f'--->{sub_dir}')
+
+
+  
