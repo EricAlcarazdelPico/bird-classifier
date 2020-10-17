@@ -5,18 +5,17 @@ from split_data import split_data
 from plotImages import plotImages
 
 
-def estructure_data(work_dir):
-    # os.path.dirname(os.path.realpath(__file__))
-    root = os.path.join(work_dir, 'birds')
-    if not os.path.exists(root):
-        split_data()
-    train_dir = os.path.join(root, 'train')
-    valid_dir = os.path.join(root, 'valid')
-    test_dir = os.path.join(root, 'test')
-    return train_dir, valid_dir, test_dir
-
-
 def generate_data():
+
+    def estructure_data(work_dir):
+        # os.path.dirname(os.path.realpath(__file__))
+        root = os.path.join(work_dir, 'birds')
+        if not os.path.exists(root):
+            split_data()
+        train_dir = os.path.join(root, 'train')
+        valid_dir = os.path.join(root, 'valid')
+        test_dir = os.path.join(root, 'test')
+        return train_dir, valid_dir, test_dir
 
     def data_generated(work_dir, image_generator):
         return image_generator.flow_from_directory(
@@ -27,6 +26,7 @@ def generate_data():
 
     train_dir, valid_dir, test_dir = estructure_data(
         os.path.dirname(os.path.realpath(__file__)))
+    
     img_size = 224
     batch_size = 128
 
@@ -41,7 +41,7 @@ def generate_data():
 
     #image_generator_test = ImageDataGenerator(rescale=1./255)
     test_data_generated = data_generated(test_dir, image_generator)
-    
+
     return train_data_generated, valid_data_generated, test_data_generated
 
 
