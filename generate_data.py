@@ -5,7 +5,7 @@ from split_data import split_data
 from plotImages import plotImages
 
 
-def generate_data():
+def generate_data(img_size=224, batch_size=128):
 
     def estructure_data(work_dir):
         # os.path.dirname(os.path.realpath(__file__))
@@ -17,7 +17,7 @@ def generate_data():
         test_dir = os.path.join(root, 'test')
         return train_dir, valid_dir, test_dir
 
-    def data_generated(work_dir, image_generator):
+    def data_generated(work_dir, image_generator, img_size, batch_size):
         return image_generator.flow_from_directory(
             directory=work_dir,
             target_size=(img_size, img_size),
@@ -26,21 +26,18 @@ def generate_data():
 
     train_dir, valid_dir, test_dir = estructure_data(
         os.path.dirname(os.path.realpath(__file__)))
-    
-    img_size = 224
-    batch_size = 128
 
     image_generator_train = ImageDataGenerator(
         rescale=1./255,
         horizontal_flip=True,
     )
-    train_data_generated = data_generated(train_dir, image_generator_train)
+    train_data_generated = data_generated(train_dir, image_generator_train, img_size, batch_size)
 
     image_generator = ImageDataGenerator(rescale=1./255)
-    valid_data_generated = data_generated(valid_dir, image_generator)
+    valid_data_generated = data_generated(valid_dir, image_generator, img_size, batch_size)
 
     #image_generator_test = ImageDataGenerator(rescale=1./255)
-    test_data_generated = data_generated(test_dir, image_generator)
+    test_data_generated = data_generated(test_dir, image_generator, img_size, batch_size)
 
     return train_data_generated, valid_data_generated, test_data_generated
 
