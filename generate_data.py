@@ -31,13 +31,16 @@ def generate_data(img_size=224, batch_size=128):
         rescale=1./255,
         horizontal_flip=True,
     )
-    train_data_generated = data_generated(train_dir, image_generator_train, img_size, batch_size)
+    train_data_generated = data_generated(
+        train_dir, image_generator_train, img_size, batch_size)
 
     image_generator = ImageDataGenerator(rescale=1./255)
-    valid_data_generated = data_generated(valid_dir, image_generator, img_size, batch_size)
+    valid_data_generated = data_generated(
+        valid_dir, image_generator, img_size, batch_size)
 
     #image_generator_test = ImageDataGenerator(rescale=1./255)
-    test_data_generated = data_generated(test_dir, image_generator, img_size, batch_size)
+    test_data_generated = data_generated(
+        test_dir, image_generator, img_size, batch_size)
 
     return train_data_generated, valid_data_generated, test_data_generated
 
