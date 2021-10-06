@@ -21,7 +21,7 @@ def generate_data(img_size=224, batch_size=128):
         return image_generator.flow_from_directory(
             directory=work_dir,
             target_size=(img_size, img_size),
-            class_mode='binary',
+            class_mode='categorical',
             batch_size=batch_size)
 
     train_dir, valid_dir, test_dir = estructure_data(
